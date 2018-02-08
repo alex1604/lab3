@@ -1,0 +1,54 @@
+body{
+  padding: 0;
+  margin: 0;
+  background-image:url('galaxy.jpg');
+  background-repeat: no-repeat;
+}
+#jumbotron{
+  height:800px;
+  width:90%;
+  max-height:800px;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-around;
+}
+#welcome{
+  font-family: 'Shrikhand', cursive;
+  height:100%;
+  font-size: 42px;
+  color: white;
+  text-align:center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+nav{
+  width:100%;
+  padding-right:10px;
+  padding-top:30px;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+#login{
+  color:white;
+}
+#login:hover{
+  cursor:pointer;
+  color:#F8A46A;
+}
+@media only screen and (max-width:1000px){
+  #login:hover{
+    cursor:pointer;
+    color:#97F8E7;
+  }
+}
+main{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
