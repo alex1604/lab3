@@ -307,7 +307,7 @@ var callback = function (){
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
       localStorage.removeItem('user_id');
-      window.location = 'http://localhost:8000/Documents/FEU17/JS2/lab3/index.html';
+      window.location = 'index.html';
     }).catch(function(fail) {
       // An error happened.
       alert('Oups, something went wrong. Try reloadgin the page.');

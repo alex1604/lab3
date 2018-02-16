@@ -69,7 +69,7 @@ var callback = function (){
   window.localStorage.setItem('user_id', dataString);
   console.log('localStorage: ' + JSON.parse(localStorage.getItem('user_id')).userId);
 
-  window.location = 'http://localhost:8000/Documents/FEU17/JS2/lab3/profile.html';
+  window.location = 'profile.html';
 })
 .catch(function(result){
   alert('Something went wrong. Try to reload the page');
