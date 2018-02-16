@@ -8,7 +8,6 @@ var callback = function (){
   let add = document.getElementById('add');
   let remove = document.getElementById('remove');
   let gitlog = document.getElementById('login');
-  let info = document.getElementById('info');
 
   /* LOGIN-WELCOME HEADER GENERATION */
 
@@ -57,9 +56,19 @@ var callback = function (){
     checkBox.type = 'checkbox';
     checkBox.classList.add('removeCheck');
     let newBoxId = obj.id;
-    //checkBox.id = newBoxId;
+    checkBox.id = newBoxId;
 
+    checkBox.addEventListener('change', function(event){
+      let target = event.target;
+      let id = target.id;
 
+      if (this.checked){
+        removeList.push(id);
+      }
+      else if (!this.checked){
+        removeList.pop(id)
+      }
+    });
 
     //new_div.appendChild(img);
     new_div.appendChild(title);
@@ -70,25 +79,6 @@ var callback = function (){
     new_div.classList.add('row_element');
     new_div.id = newBoxId;
 
-    new_div.addEventListener('click', function(event){
-      let target = event.target;
-      let id = target.id;
-      let thisDiv = document.getElementById(id);
-
-      let thisCheck = target.getElementsByClassName('removeCheck')[0];
-
-      if (!thisCheck.checked){
-        thisCheck.checked = true;
-        removeList.push(id);
-        thisDiv.style.backgroundColor = "rgba(220, 0, 0, 0.6)";
-        console.log(removeList);
-      } else if(thisCheck.checked) {
-        thisCheck.checked = false;
-        thisDiv.style.backgroundColor = "transparent";
-        removeList.pop(id);
-        console.log(removeList);
-      }
-    });
 
     let rowNumber = 'r' + number;
     let row = document.getElementById(rowNumber);
@@ -169,65 +159,33 @@ var callback = function (){
 
   function addForm(){
     let div = document.createElement('div');
-    let subDiv1 = document.createElement('div');
-    subDiv1.classList.add('subDiv1');
-    let subDiv2 = document.createElement('div');
-    subDiv2.classList.add('subDiv1');
-    let subDiv3 = document.createElement('div');
-    subDiv3.classList.add('subDiv3');
     let title = document.createElement('input');
     title.type = 'text';
     title.id = 'title';
-    let tiLable = document.createElement('label');
-    tiLable.for = "#" + title.id;
-    tiLable.innerHTML = 'Title: ';
     let director = document.createElement('input');
     director.type = 'text';
     director.id = 'director';
-    let dirLable = document.createElement('label');
-    dirLable.for = "#" + director.id;
-    dirLable.innerHTML = 'Director: ';
     let year = document.createElement('input');
     year.type = 'text';
     year.id = 'year';
-    let yeLable = document.createElement('label');
-    yeLable.for = "#" + year.id;
-    yeLable.innerHTML = 'Year: ';
-    let genre = document.createElement('select');
+    let genre = document.createElement('input');
+    genre.type = 'text';
     genre.id = 'genre';
-    let genres = ['Adventure','Comedy','Drama','Historical','Horror','Sci-fi','Thriller','War'];
-    for (x in genres){
-      let option = document.createElement('option');
-      option.value = genres[x].toLowerCase();
-      option.innerHTML = genres[x];
-      genre.appendChild(option);
-    }
-    let geLable = document.createElement('label');
-    geLable.for = "#" + genre.id;
-    geLable.innerHTML = 'Genre: ';
     let addClose = document.createElement('span');
     addClose.classList.add('fa');
     addClose.classList.add('fa-times');
-    addClose.classList.add('fa-2x');
     addClose.classList.add('addCloseButton');
     addClose.id = 'addCloseButton';
     let button = document.createElement('button');
-    button.innerHTML = 'Add Film';
+    button.innerHTML = 'Confirm';
     button.classList.add('addFormButton');
     button.id = 'confirmButton';
-    subDiv1.appendChild(tiLable);
-    subDiv1.appendChild(title);
-    subDiv1.appendChild(dirLable);
-    subDiv1.appendChild(director);
-    subDiv2.appendChild(yeLable);
-    subDiv2.appendChild(year);
-    subDiv2.appendChild(geLable);
-    subDiv2.appendChild(genre);
-    subDiv3.appendChild(addClose);
-    subDiv3.appendChild(button);
-    div.appendChild(subDiv1);
-    div.appendChild(subDiv2);
-    div.appendChild(subDiv3);
+    div.appendChild(addClose);
+    div.appendChild(title);
+    div.appendChild(director);
+    div.appendChild(year);
+    div.appendChild(genre);
+    div.appendChild(button);
     div.classList.add('addForm');
     div.id = 'addForm';
     document.body.appendChild(div);
@@ -368,23 +326,10 @@ var callback = function (){
 
   remove.addEventListener('click', function(){
     console.log(removeList);
-    for (let id in removeList){
-      removeFilm(removeList[id]);
-    }
-    removeList.length = 0;
-  });
-
-  info.addEventListener('mouseover',function(){
-    let div = document.createElement('div');
-    let p = document.createElement('p');
-    p.innerHTML = "Click on one or several for films to select them. Once yo're done selecting the film(s), click on 'Remove Film(s)' to erase delete them from your catalogue. WARNING: this action cannot be undone."
-    div.appendChild(p);
-    div.id = 'infoMs';
-    document.body.append(div);
-  });
-  info.addEventListener('mouseleave',function(){
-    let div = document.getElementById('infoMs');
-    document.body.removeChild(div);
+      for (let id in removeList){
+        removeFilm(removeList[id]);
+      }
+      removeList.length = 0;
   });
 }
 

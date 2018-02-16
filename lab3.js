@@ -4,20 +4,10 @@ var callback = function (){
     firebase.database().ref('users/' + userId).set({
       username: name,
       email: email,
-      library: {}
     }).then(function(success){
       alert('You were successfully registered.');
     }).catch(function(fail){
       alert('Something went wrong, we couldn´t register you. Try reloading the page.');
-    });
-  }
-
-  function addFilm(title, director, year, genre){
-    firebase.database().ref('users/' + uid).push({
-      title: title,
-      director: director,
-      year: year,
-      genre: genre
     });
   }
 
@@ -33,10 +23,10 @@ var callback = function (){
       let username = result.additionalUserInfo.profile.name;
       let email = result.additionalUserInfo.profile.email;
       var user = firebase.auth().currentUser;
-      var uid;
 
       if (user != null) {
-        uid = user.uid;
+        var uid = user.uid;
+        var name = username;
       }
 
       let userId = uid;
@@ -74,7 +64,7 @@ var callback = function (){
     */
   });
 
-  const user_id = {userId: uid}; // WE USE THIS CONST TO GET THE USERNAME WITH USER.NAME
+  const user_id = {userId: uid, name:name}; // WE USE THIS CONST TO GET THE USERNAME WITH USER.NAME
   let dataString = JSON.stringify( user_id );
   window.localStorage.setItem('user_id', dataString);
   console.log('localStorage: ' + JSON.parse(localStorage.getItem('user_id')).userId);
