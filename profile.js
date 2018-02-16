@@ -377,7 +377,7 @@ var callback = function (){
   info.addEventListener('mouseover',function(){
     let div = document.createElement('div');
     let p = document.createElement('p');
-    p.innerHTML = "Click on one or several for films to select them. Once yo're done selecting the film(s), click on 'Remove Film(s)' to erase delete them from your catalogue. WARNING: this action cannot be undone."
+    p.innerHTML = "Click on one or several films to select them. After you have selected the films you wish to delete from your catalogue, simply click on 'Delete Film(s)'. WARNING: this action cannot be undone."
     div.appendChild(p);
     div.id = 'infoMs';
     document.body.append(div);
