@@ -84,7 +84,7 @@ var callback = function (){
         console.log(removeList);
       } else if(thisCheck.checked) {
         thisCheck.checked = false;
-        thisDiv.style.backgroundColor = "transparent";
+        thisDiv.style.backgroundColor = "rgba(204, 255, 204, 0.8)";
         removeList.pop(id);
         console.log(removeList);
       }
@@ -98,6 +98,10 @@ var callback = function (){
 
 
   function displayFilms(element, arrow){
+
+    let numberPages = document.getElementById('amountPages');
+    let amountPages = element.length % 9;
+    numberPages.innerHTML = 'Page ' + (arrow + 1) + ' of ' + amountPages ;
 
     let count = 0;
     let number = 1;
@@ -320,44 +324,57 @@ var callback = function (){
   let arrowRight = document.getElementById('arrowRight');
   let arrowLeft = document.getElementById('arrowLeft');
 
+
   var arrow = 0;
   //
-  arrowRight.addEventListener('click', function(){
 
-    if (library[(arrow * 9) + 1] != null){
 
-      while (r1.hasChildNodes()) {
-        r1.removeChild(r1.lastChild);
-      }
-      while (r2.hasChildNodes()) {
-        r2.removeChild(r2.lastChild);
-      }
-      while (r3.hasChildNodes()) {
-        r3.removeChild(r3.lastChild);
-      }
+    arrowRight.addEventListener('click', function(){
+
       arrow++;
-      displayFilms(library, arrow);
-    }
 
-  });
+      console.log('one arrow right is clicked');
 
-  arrowLeft.addEventListener('click', function(){
+      if (library[(arrow * 9) + 1] != null){
 
-    if (library[((arrow-1) * 9) + 1] != null){
-
-      while (r1.hasChildNodes()) {
-        r1.removeChild(r1.lastChild);
+        while (r1.hasChildNodes()) {
+          r1.removeChild(r1.lastChild);
+        }
+        while (r2.hasChildNodes()) {
+          r2.removeChild(r2.lastChild);
+        }
+        while (r3.hasChildNodes()) {
+          r3.removeChild(r3.lastChild);
+        }
+        displayFilms(library, arrow);
+      } else{
+        arrow--;
       }
-      while (r2.hasChildNodes()) {
-        r2.removeChild(r2.lastChild);
+      console.log(arrow);
+    });
+
+    arrowLeft.addEventListener('click', function(){
+
+
+      console.log('one arrow left is clicked');
+
+      if (library[((arrow-1) * 9) + 1] != null){
+
+        while (r1.hasChildNodes()) {
+          r1.removeChild(r1.lastChild);
+        }
+        while (r2.hasChildNodes()) {
+          r2.removeChild(r2.lastChild);
+        }
+        while (r3.hasChildNodes()) {
+          r3.removeChild(r3.lastChild);
+        }
+        arrow--;
+        displayFilms(library, arrow);
       }
-      while (r3.hasChildNodes()) {
-        r3.removeChild(r3.lastChild);
-      }
-      arrow--;
-      displayFilms(library, arrow);
-    }
-  });
+      console.log(arrow);
+    });
+
   //
 
   add.addEventListener('click', addForm);
